@@ -9,6 +9,24 @@
   </head>
 
   <body>
+
+    <% if logged_in? %>
+
+    <h3> <%= current_user.name %> </h3>
+
+    <% end %>
+    <% else %>
+
+      <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+        <label>Username</label>
+         <%= text_field_tag :username %> <br>
+         <label>Password</label>
+         <%= password_field_tag :password %><br>
+         <%= submit_tag "Login" %>
+
+    <% end %>
+
+
     <%= yield %>
   </body>
 </html>

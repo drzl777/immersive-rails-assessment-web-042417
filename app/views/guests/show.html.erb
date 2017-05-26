@@ -1,0 +1,20 @@
+<h1> <%= @guest.name %> </h1>
+
+<h2> <%= @guest.occupation %> </h2>
+
+<%= form_tag new_appearance_path do %>
+  <label>Choose Episode Appearned On</label><br>
+  <%= hidden_field_tag 'guest_id', value= @guest.id %>
+  <label>Episode</label>
+  <%= select_tag 'episode_id', options_from_collection_for_select(@episodes, "id", "number")  %><br>
+  <label>Rating</label>
+  <%= number_field_tag 'rating'  %> <br>
+  <%= submit_tag %>
+<% end %>
+
+<h3>Appears on</h3>
+<ul>
+  <% @appearances.each do |a| %>
+    <li> Episode <%= a.number %> on <%= a.date %>  </li>
+  <% end %>
+</ul>
